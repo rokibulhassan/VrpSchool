@@ -8,6 +8,12 @@
 <div class="gllpLatlonPicker">
   <%= simple_form_for(@depot) do |f| %>
       <div class="form-inputs">
+        <form id="origin_search text-right">
+          <input type="text" class="gllpSearchField form-control">
+          <input type="button" class="gllpSearchButton btn btn-sm btn-info" value="search">
+        </form>
+        <br/><br/>
+
         <div class="gllpMap">Google Maps</div>
         <input type="hidden" class="gllpZoom" value="17"/>
         <%= f.input :latitude, :input_html => {class: "gllpLatitude", value: f.object.latitude || "23.77952286287398"} %>
@@ -18,7 +24,13 @@
         <%= f.input :symmetric_costs %>
       </div>
       <div class="form-actions">
-        <%= f.button :submit %>
+        <button id="create_location" class="btn btn-primary">Create Depot</button>
       </div>
   <% end %>
 </div>
+
+<script type="application/javascript">
+    $("#create_location").click(function () {
+        $("#new_depot").submit();
+    });
+</script>
