@@ -40,7 +40,7 @@ module ApplicationHelper
     symmetric_costs
   end
 
-  def create_depots
+  def populate_depots
     clean_depot!
     Depot.create(name: "Sector 1, Dhaka 1230, Bangladesh", latitude: 23.8587004, longitude: 90.4001495, demand: 0, symmetric_costs: "0,10,3,8,44,43,32,36,38,26,22,32", index: 0)
     Depot.create(name: "Abdullahpur Bus Stop, Dhaka - Ashuliya Highway, Dha...", latitude: 23.8797505, longitude: 90.4011432, demand: 15, symmetric_costs: "10,0,10,13,40,47,38,42,43,31,27,37", index: 1)
