@@ -1,0 +1,30 @@
+<h1>Optimum Routes Detail</h1>
+
+<h4>No of routes <b><%=@routes.count%></b> and Total <b><%=@routes.count%></b> Buses Needed</h4>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Routes</th>
+    <th>Demand</th>
+    <th>Cost</th>
+    <th>View On Map</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @routes.each do |depots| %>
+      <% depots.each do |depot| %>
+          <tr>
+            <td><%= depot[:name].join("<------>") %></td>
+            <td><%= depot[:demand] %></td>
+            <td><%= depot[:cost] %></td>
+            <td><%= link_to 'View On Map', show_routes_dashboards_path(route_cycle_id: depot[:id]), method: :get, :class => "btn btn-sm btn-primary" %></td>
+          </tr>
+      <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'View On Map', view_on_map_dashboards_path, method: :get, :class => "btn btn-sm btn-primary" %>

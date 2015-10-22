@@ -1,0 +1,24 @@
+<style>
+    .gllpMap {
+        width: 900px;
+        height: 600px;
+    }
+</style>
+
+<div class="gllpLatlonPicker">
+  <%= simple_form_for(@depot) do |f| %>
+      <div class="form-inputs">
+        <div class="gllpMap">Google Maps</div>
+        <input type="hidden" class="gllpZoom" value="17"/>
+        <%= f.input :latitude, :input_html => {class: "gllpLatitude", value: f.object.latitude || "23.77952286287398"} %>
+        <%= f.input :longitude, :input_html => {class: "gllpLongitude", value: f.object.longitude || "90.39457440376282"} %>
+        <%= f.input :name, :input_html => {class: "gllpLocationName", value: f.object.name || "Mohakhali DOHS, Dhaka, Bangladesh"} %>
+        <%= f.input :index %>
+        <%= f.input :demand %>
+        <%= f.input :symmetric_costs %>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit %>
+      </div>
+  <% end %>
+</div>
