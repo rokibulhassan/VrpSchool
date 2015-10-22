@@ -6,7 +6,7 @@
 </style>
 
 <div class="gllpLatlonPicker">
-  <%= simple_form_for(@depot) do |f| %>
+  <%= simple_form_for(@depot, html: {id: 'depot_form'}) do |f| %>
       <div class="form-inputs">
         <form id="origin_search text-right">
           <input type="text" class="gllpSearchField form-control">
@@ -24,13 +24,13 @@
         <%= f.input :symmetric_costs %>
       </div>
       <div class="form-actions">
-        <button id="create_location" class="btn btn-primary">Create Depot</button>
+        <button id="submit_depot_form" class="btn btn-primary">Submit</button>
       </div>
   <% end %>
 </div>
 
 <script type="application/javascript">
-    $("#create_location").click(function () {
-        $("#new_depot").submit();
+    $("#submit_depot_form").click(function () {
+        $("#depot_form").submit();
     });
 </script>
