@@ -1,30 +1,38 @@
 <h1>Optimum Routes Detail</h1>
 
-<h4>No of routes <b><%=@routes.count%></b> and Total <b><%=@routes.count%></b> Buses Needed</h4>
+<h4>No of routes <b><%= @routes.count %></b> and Total <b><%= @routes.count %></b> Buses Needed</h4>
 
-<table class="table">
+<table class="table table-striped">
   <thead>
   <tr>
-    <th>Routes</th>
+    <th class="glyphicon glyphicon-road"> Routes</th>
     <th>Demand</th>
     <th>Cost</th>
-    <th>View On Map</th>
+    <th>View</th>
   </tr>
   </thead>
 
   <tbody>
+  <% total_demand = 0 %>
+  <% total_cost = 0 %>
   <% @routes.each do |depots| %>
       <% depots.each do |depot| %>
           <tr>
-            <td><%= depot[:name].join("<------>") %></td>
+            <td><%= depot[:name].join("<span class='glyphicon glyphicon-resize-horizontal'></span>").html_safe %></td>
             <td><%= depot[:demand] %></td>
             <td><%= depot[:cost] %></td>
-            <td><%= link_to 'View On Map', show_routes_dashboards_path(route_cycle_id: depot[:id]), method: :get, :class => "btn btn-sm btn-primary" %></td>
+            <td><%= link_to "<span class='glyphicon glyphicon-map-marker'>map</span>".html_safe, show_routes_dashboards_path(route_cycle_id: depot[:id]), method: :get, :class => "btn btn-xs btn-primary" %></td>
           </tr>
+          <% total_demand += depot[:demand] %>
+          <% total_cost += depot[:cost] %>
       <% end %>
   <% end %>
+  <tr>
+    <td>Summary</td>
+    <td><span class="glyphicon glyphicon-user"><%= total_demand %></span></td>
+    <td><span class="glyphicon glyphicon-time"><%= total_cost %></span></td>
+    <td><%= link_to "<span class='glyphicon glyphicon-map-marker'></span>".html_safe, view_on_map_dashboards_path, method: :get, :class => "btn btn-xs btn-primary" %></td>
+  </tr>
   </tbody>
 </table>
 
-<br>
-<%= link_to 'View On Map', view_on_map_dashboards_path, method: :get, :class => "btn btn-sm btn-primary" %>

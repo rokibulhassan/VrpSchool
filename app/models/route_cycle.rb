@@ -107,11 +107,11 @@ class RouteCycle < ActiveRecord::Base
     center = Depot.where(index: 0).first
     routes.each do |route|
       cycle = []
-      cycle << center.name
+      cycle << "<span class='bg-success text-danger glyphicon glyphicon-map-marker'> #{center.name} </span>"
       route.nodes.each do |node|
-        cycle << Depot.where(index: node).first.name
+        cycle << "<span class='text-primary bg-danger glyphicon glyphicon-road'> #{Depot.where(index: node).first.name} </span>"
       end
-      cycle << center.name
+      cycle << "<span class='bg-success text-danger glyphicon glyphicon-map-marker'> #{center.name} </span>"
       cycle.flatten!
       paths << [id: route.id, name: cycle, demand: route.load, cost: route.cost]
     end
