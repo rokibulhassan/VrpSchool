@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def depots
-    Depot.all
+    Depot.order(:index)
   end
 
   def depots_size
